@@ -1,0 +1,21 @@
+header {
+	display: flex;
+	flex-direction: column;
+	width: 70%;
+	align-items: center;
+	margin: 10px;
+	#search {
+		flex: 1;
+		padding: 10px;
+		&:focus {
+			outline: none;
+		}
+	}
+	.row {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		margin: 10px;
+		user-select: none;
+	}
+}

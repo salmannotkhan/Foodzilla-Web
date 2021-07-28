@@ -1,9 +1,15 @@
 import React from "react";
 import { render } from "react-dom";
+import Header from "./components/Header";
+import "./styles/index.scss";
 
 class App extends React.Component {
 	render() {
-		return <div>Hello World!!!</div>;
+		return (
+			<>
+				<Header />
+			</>
+		);
 	}
 }
 
