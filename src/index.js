@@ -6,31 +6,30 @@ import "./styles/index.scss";
 
 const url = "https://foodzilla.vercel.app/";
 class App extends React.Component {
-	state = { recipes: [], params: { last_id: 0 } };
+	state = { loading: true, recipes: [], params: { last_id: 0 } };
 
 	nextPage = () => {
+		const { recipes, params } = this.state;
+
 		this.setState(
 			{
 				params: {
-					...this.state.params,
-					last_id:
-						this.state.recipes[this.state.recipes.length - 1].id,
+					...params,
+					last_id: recipes[recipes.length - 1].id,
 				},
 			},
-			() => {
-				this.fetchRecipes();
-			}
+			() => this.fetchRecipes()
 		);
 	};
 
 	fetchRecipes = () => {
-		const requestUrl = new URL(url + "recipes");
-		Object.entries(this.state.params).forEach(([key, value]) => {
-			requestUrl.searchParams.append(key, value);
-		});
-		fetch(requestUrl)
+		this.setState({ loading: true });
+		const { recipes, params } = this.state;
+		fetch(url + "recipes?params=" + JSON.stringify(params))
 			.then((response) => response.json())
-			.then((data) => this.setState({ recipes: data }));
+			.then((data) =>
+				this.setState({ loading: false, recipes: recipes.concat(data) })
+			);
 	};
 
 	componentDidMount() {

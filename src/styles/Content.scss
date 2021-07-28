@@ -1,18 +1,52 @@
 section {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 70%;
 	.recipe {
 		display: flex;
-		flex-direction: column;
-		.veg-indicator {
-			display: block;
-			height: 10px;
-			width: 10px;
-			border-radius: 50%;
-			&.veg {
-				background-color: green;
+		align-items: stretch;
+		padding: 10px;
+		margin: 5px;
+		text-decoration: none;
+		width: 49%;
+		border-radius: 10px;
+		border: 1px solid transparent;
+		transition: box-shadow 0.5s ease, border 0.5s ease;
+		img {
+			height: 215px;
+			width: 290px;
+			border-radius: 10px;
+		}
+		.details {
+			color: black;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			margin: 10px;
+			.title {
+				font-size: 19pt;
 			}
-			&.non-veg {
-				background-color: red;
+			.veg-indicator {
+				display: block;
+				height: 10px;
+				width: 10px;
+				border-radius: 50%;
+				&.veg {
+					background-color: green;
+				}
+				&.non-veg {
+					background-color: red;
+				}
 			}
 		}
+		&:hover {
+			border: 1px solid black;
+			box-shadow: 10px 10px 10px black;
+		}
+	}
+	button {
+		width: 100%;
+		padding: 10px;
 	}
 }

@@ -4,23 +4,21 @@ import "../styles/Content.scss";
 export default class Content extends React.Component {
 	render() {
 		return (
-			<section>
+			<section onScroll={console.log}>
 				{this.props.recipes.map((recipe) => (
-					<div className="recipe" key={recipe.id}>
-						<img src={recipe.image} height="100px" width="100px" />
-						{recipe.name}
-						<div
-							className={
-								"veg-indicator " +
-								(recipe.is_veg ? "veg" : "non-veg")
-							}
-						></div>
-					</div>
+					<a href="/" className="recipe" key={recipe.id}>
+						<img src={recipe.image} alt={recipe.name} />
+						<div className="details">
+							<div className="title">{recipe.name}</div>
+							<div
+								className={
+									"veg-indicator " + (recipe.is_veg ? "veg" : "non-veg")
+								}
+							></div>
+						</div>
+					</a>
 				))}
-				<div className="page-nav">
-					<button>Previous</button>
-					<button onClick={this.props.nextPage}>Next</button>
-				</div>
+				<button onClick={this.props.nextPage}>Load more</button>
 			</section>
 		);
 	}
