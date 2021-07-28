@@ -13,7 +13,7 @@ export default class Header extends React.Component {
 						placeholder="Search Recipe"
 					/>
 					<div className="row">
-						<label for="veg">
+						<label htmlFor="veg">
 							<input
 								id="veg"
 								type="radio"
@@ -22,7 +22,7 @@ export default class Header extends React.Component {
 							/>
 							Veg
 						</label>
-						<label for="non-veg">
+						<label htmlFor="non-veg">
 							<input
 								id="non-veg"
 								type="radio"
