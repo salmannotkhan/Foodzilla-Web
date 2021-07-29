@@ -3,6 +3,8 @@ import { render } from "react-dom";
 import Header from "./components/Header";
 import Content from "./components/Content";
 import "./styles/index.scss";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import Detail from "./components/Detail";
 
 const url = "https://foodzilla.vercel.app/";
 class App extends React.Component {
@@ -38,15 +40,22 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<>
+			<Router>
 				<Header />
-				<Content
-					recipes={this.state.recipes}
-					nextPage={() => {
-						this.nextPage();
-					}}
-				/>
-			</>
+				<Switch>
+					<Route exact path="/">
+						<Content
+							recipes={this.state.recipes}
+							nextPage={() => {
+								this.nextPage();
+							}}
+						/>
+					</Route>
+					<Route path="/recipe/:id">
+						<Detail />
+					</Route>
+				</Switch>
+			</Router>
 		);
 	}
 }

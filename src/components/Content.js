@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../styles/Content.scss";
 
 export default class Content extends React.Component {
@@ -6,7 +7,7 @@ export default class Content extends React.Component {
 		return (
 			<section onScroll={console.log}>
 				{this.props.recipes.map((recipe) => (
-					<a href="/" className="recipe" key={recipe.id}>
+					<Link to={`/recipe/${recipe.id}`} className="recipe" key={recipe.id}>
 						<img src={recipe.image} alt={recipe.name} />
 						<div className="details">
 							<div className="title">{recipe.name}</div>
@@ -16,7 +17,7 @@ export default class Content extends React.Component {
 								}
 							></div>
 						</div>
-					</a>
+					</Link>
 				))}
 				<button onClick={this.props.nextPage}>Load more</button>
 			</section>
