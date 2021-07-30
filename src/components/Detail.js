@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { withRouter } from "react-router";
+import "../styles/Detail.scss";
 
 class Detail extends Component {
 	state = {
@@ -11,25 +12,57 @@ class Detail extends Component {
 		const response = await fetch(`https://foodzilla.vercel.app/recipe/${id}`);
 		const data = await response.json();
 		this.setState({ data: data, loading: false });
+		console.log(data);
 	}
 	render() {
 		const { data, loading } = this.state;
 		return (
-			<div>
+			<>
 				{loading ? (
 					"Loading"
 				) : (
-					<>
-						<h2>{data.name}</h2>
-						<ul>
-							Ingredients:
-							{data.ingredients.map((ingredient, idx) => (
-								<li key={idx}>{ingredient}</li>
-							))}
-						</ul>
-					</>
+					<div className="detail">
+						<div className="row">
+							<img src={data.image} alt={data.name} />
+						</div>
+						<div className="row">
+							<h2>{data.name}</h2>
+							<div className="main">{data.main_ingredients}</div>
+							<div className="cuisine">{data.cuisine}</div>
+							<div className="course">{data.course}</div>
+							<div className="taste">{data.taste}</div>
+							<div className="level">{data.cooking_level}</div>
+							<div className="time">
+								Cook time:
+								{data.cook_time > 60
+									? `${data.cook_time / 60} Hrs`
+									: `${data.cook_time} Mins`}
+								<br />
+								Prep time:
+								{data.prep_time > 60
+									? `${data.prep_time / 60} Hrs`
+									: `${data.prep_time} Min`}
+							</div>
+						</div>
+						<div className="row">
+							<ul>
+								Ingredients:
+								{data.ingredients.map((ingredient, idx) => (
+									<li key={idx}>{ingredient}</li>
+								))}
+							</ul>
+						</div>
+						<div className="row">
+							<ul>
+								Steps:
+								{data.steps.map((step, idx) => (
+									<li key={idx}>{step}</li>
+								))}
+							</ul>
+						</div>
+					</div>
 				)}
-			</div>
+			</>
 		);
 	}
 }

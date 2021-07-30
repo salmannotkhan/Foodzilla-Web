@@ -1,0 +1,19 @@
+.detail {
+	display: flex;
+	flex-wrap: wrap;
+	width: 70%;
+	.row {
+		width: 50%;
+		display: inherit;
+		flex-direction: column;
+		padding: 10px;
+		img {
+			height: 430px;
+			width: 580px;
+			align-self: center;
+		}
+		ul {
+			list-style-type: "- ";
+		}
+	}
+}
