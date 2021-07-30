@@ -8,7 +8,19 @@ import loader1 from "url:../assets/images/loader1.gif";
 export default class Content extends Component {
 	render() {
 		return (
-			<section onScroll={console.log}>
+			<section>
+				<div className="filters">
+					<div className="row">
+						<label htmlFor="veg">
+							<input id="veg" type="radio" name="isVeg" value="true" />
+							Veg
+						</label>
+						<label htmlFor="non-veg">
+							<input id="non-veg" type="radio" name="isVeg" value="false" />
+							Non-Veg
+						</label>
+					</div>
+				</div>
 				{this.props.recipes.map((recipe) => (
 					<Link to={`/recipe/${recipe.id}`} className="recipe" key={recipe.id}>
 						<Img
