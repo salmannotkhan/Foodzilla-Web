@@ -19,7 +19,9 @@ export default class Content extends React.Component {
 						</div>
 					</Link>
 				))}
-				<button onClick={this.props.nextPage}>Load more</button>
+				<button onClick={this.props.nextPage} disabled={this.props.loading}>
+					{this.props.loading ? "Loading" : "Load more"}
+				</button>
 			</section>
 		);
 	}
