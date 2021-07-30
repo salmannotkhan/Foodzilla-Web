@@ -27,16 +27,14 @@ section {
 			.title {
 				font-size: 19pt;
 			}
-			.veg-indicator {
+			.veg {
 				display: block;
-				height: 10px;
-				width: 10px;
+				height: 20px;
+				width: 20px;
 				border-radius: 50%;
-				&.veg {
-					background-color: green;
-				}
+				background-color: green;
 				&.non-veg {
-					background-color: red;
+					background-color: red !important;
 				}
 			}
 		}

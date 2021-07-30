@@ -1,8 +1,8 @@
-import React from "react";
+import { Component } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Content.scss";
 
-export default class Content extends React.Component {
+export default class Content extends Component {
 	render() {
 		return (
 			<section onScroll={console.log}>
@@ -11,11 +11,7 @@ export default class Content extends React.Component {
 						<img src={recipe.image} alt={recipe.name} />
 						<div className="details">
 							<div className="title">{recipe.name}</div>
-							<div
-								className={
-									"veg-indicator " + (recipe.is_veg ? "veg" : "non-veg")
-								}
-							></div>
+							<div className={"veg " + (!recipe.is_veg ? "non-veg" : "")}></div>
 						</div>
 					</Link>
 				))}

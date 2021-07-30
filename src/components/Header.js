@@ -1,7 +1,7 @@
-import React from "react";
+import { Component } from "react";
 import "../styles/Header.scss";
 
-export default class Header extends React.Component {
+export default class Header extends Component {
 	render() {
 		return (
 			<header>
@@ -14,21 +14,11 @@ export default class Header extends React.Component {
 					/>
 					<div className="row">
 						<label htmlFor="veg">
-							<input
-								id="veg"
-								type="radio"
-								name="isVeg"
-								value="true"
-							/>
+							<input id="veg" type="radio" name="isVeg" value="true" />
 							Veg
 						</label>
 						<label htmlFor="non-veg">
-							<input
-								id="non-veg"
-								type="radio"
-								name="isVeg"
-								value="false"
-							/>
+							<input id="non-veg" type="radio" name="isVeg" value="false" />
 							Non-Veg
 						</label>
 					</div>

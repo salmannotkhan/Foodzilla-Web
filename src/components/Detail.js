@@ -1,7 +1,7 @@
-import React from "react";
+import { Component } from "react";
 import { withRouter } from "react-router";
 
-class Detail extends React.Component {
+class Detail extends Component {
 	state = {
 		data: {},
 		loading: true,
