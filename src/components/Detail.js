@@ -1,6 +1,9 @@
 import { Component } from "react";
 import { withRouter } from "react-router";
+import { Img } from "react-image";
 import "../styles/Detail.scss";
+// eslint-disable-next-line import/no-unresolved
+import loader1 from "url:../assets/images/loader1.gif";
 
 class Detail extends Component {
 	state = {
@@ -23,7 +26,11 @@ class Detail extends Component {
 				) : (
 					<div className="detail">
 						<div className="row">
-							<img src={data.image} alt={data.name} />
+							<Img
+								src={data.image}
+								alt={data.name}
+								loader={<img src={loader1} alt={data.name} />}
+							/>
 						</div>
 						<div className="row">
 							<h2>{data.name}</h2>
