@@ -45,6 +45,9 @@ export default class Content extends Component {
 							onSelect={(selectedList) =>
 								this.props.updateParams("taste", selectedList)
 							}
+							onRemove={(selectedList) =>
+								this.props.updateParams("taste", selectedList)
+							}
 						/>
 					</div>
 					<div className="filter"></div>
@@ -65,11 +68,15 @@ export default class Content extends Component {
 				))}
 				<button
 					onClick={this.props.nextPage}
-					disabled={this.props.loading || this.props.recipes.length === 0}
+					disabled={
+						this.props.loading ||
+						this.props.recipes.length === 0 ||
+						this.props.recipe % 10 !== 0
+					}
 				>
 					{this.props.loading
 						? "Loading"
-						: this.props.recipes.length > 0
+						: this.props.recipes.length > 0 && this.props.recipe % 10 === 0
 						? "Load more"
 						: "No recipes found"}
 				</button>

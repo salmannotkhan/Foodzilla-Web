@@ -20,14 +20,12 @@ export default class App extends Component {
 		const { recipes, params } = this.state;
 		const url = new URL("https://foodzilla.vercel.app/recipes");
 		Object.entries(params).forEach(([key, value]) => {
-			url.searchParams.append(key, value);
+			if (value.length > 0) url.searchParams.append(key, value);
 		});
 		const response = await fetch(url);
 		const data = (await response.json()) || [];
-		var last_id;
-		if (data.length !== 0) {
-			last_id = data[data.length - 1].id;
-		}
+		const last_id = data.length === 0 ? 0 : data[data.length - 1].id;
+
 		this.setState({
 			loading: false,
 			recipes: reload ? data : recipes.concat(data),
