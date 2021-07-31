@@ -7,7 +7,15 @@ import Detail from "./Detail";
 export default class App extends Component {
 	state = { loading: true, recipes: [], params: { last_id: 0 } };
 
-	async fetchRecipes() {
+	updateParams(key, value) {
+		const newParams = { ...this.state.params, last_id: 0 };
+		newParams[key] = typeof value === "string" ? value : value.join("|");
+		this.setState({ params: newParams }, () => {
+			this.fetchRecipes();
+		});
+	}
+
+	async fetchRecipes(reload = true) {
 		this.setState({ loading: true });
 		const { recipes, params } = this.state;
 		const url = new URL("https://foodzilla.vercel.app/recipes");
@@ -15,11 +23,14 @@ export default class App extends Component {
 			url.searchParams.append(key, value);
 		});
 		const response = await fetch(url);
-		const data = await response.json();
-		const last_id = data[data.length - 1].id;
+		const data = (await response.json()) || [];
+		var last_id;
+		if (data.length !== 0) {
+			last_id = data[data.length - 1].id;
+		}
 		this.setState({
 			loading: false,
-			recipes: recipes.concat(data),
+			recipes: reload ? data : recipes.concat(data),
 			params: { ...params, last_id: last_id },
 		});
 	}
@@ -31,13 +42,14 @@ export default class App extends Component {
 	render() {
 		return (
 			<Router>
-				<Header />
+				<Header updateParams={(key, value) => this.updateParams(key, value)} />
 				<Switch>
 					<Route exact path="/">
 						<Content
 							recipes={this.state.recipes}
-							nextPage={() => this.fetchRecipes()}
+							nextPage={() => this.fetchRecipes(false)}
 							loading={this.state.loading}
+							updateParams={(key, value) => this.updateParams(key, value)}
 						/>
 					</Route>
 					<Route path="/recipe/:id">

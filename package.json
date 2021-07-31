@@ -4,7 +4,7 @@
 	"description": "Recipe Website in React",
 	"main": "index.js",
 	"scripts": {
-		"dev": "parcel -p 3000 src/index.html"
+		"dev": "parcel -p 3000 src/index.html --open"
 	},
 	"keywords": [
 		"react",
@@ -13,6 +13,7 @@
 	"author": "Salman Shaikh",
 	"license": "ISC",
 	"dependencies": {
+		"multiselect-react-dropdown": "^2.0.5",
 		"parcel": "^2.0.0-beta.2",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
